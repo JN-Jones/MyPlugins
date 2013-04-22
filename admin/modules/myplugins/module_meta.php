@@ -10,16 +10,11 @@ function myplugins_meta()
 	global $page, $lang, $db;
 	$lang->load("myplugins");
 
-//	$query = $db->simple_select("settinggroups", "gid", "name='Wiki'");
-//    $g = $db->fetch_array($query);
-
 	$sub_menu = array();
 	$sub_menu['5'] = array("id" => "list", "title" => $lang->myplugins_overview, "link" => "index.php?module=myplugins");
-//	$sub_menu['10'] = array("id" => "verification", "title" => $lang->myplugins_verification, "link" => "index.php?module=myplugins-verification");
+	$sub_menu['10'] = array("id" => "stats", "title" => $lang->myplugins_stats, "link" => "index.php?module=myplugins-stats");
+//	$sub_menu['15'] = array("id" => "verification", "title" => $lang->myplugins_verification, "link" => "index.php?module=myplugins-verification");
 	
-//	$query = $db->simple_select("settinggroups", "gid", "name='Wiki'");
-//	if($db->num_rows($query))
-
 	if(function_exists("myplugins_info"))
 		$page->add_menu_item($lang->myplugins, "myplugins", "index.php?module=myplugins", 45, $sub_menu);
 
@@ -34,6 +29,7 @@ function myplugins_action_handler($action)
 	
 	$actions = array(
 		'list' => array('active' => 'list', 'file' => 'list.php'),
+		'stats' => array('active' => 'stats', 'file' => 'stats.php'),
 		'verification' => array('active' => 'verification', 'file' => 'verification.php')
 	);
 
@@ -60,6 +56,7 @@ function myplugins_admin_permissions()
 	
 	$admin_permissions = array(
 		"list"	=> $lang->myplugins_permission_list,
+		"stats"	=> $lang->myplugins_permission_stats,
 		"verification"	=> $lang->myplugins_permission_verification
 	);
 	

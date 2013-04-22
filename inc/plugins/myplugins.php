@@ -38,7 +38,14 @@ function myplugins_activate_commit()
 	
 	if($plugininfo['author'] != "Jones")
 	    return;
-	    
+	
+	$stats = $cache->read("myplugins_stats");
+	if($stats['enabled']) {
+		$url = "http://jonesboard.de/plugins-api.php?action=plugins&amp;do=activate&amp;code={$stats['code']}&amp;plugin=".urlencode($plugininfo['name'])."&amp;version=".urlencode($plugininfo['version']);
+	
+		fetch_remote_file($url);
+	}
+	
 	flash_message($message, 'success');
 	admin_redirect("index.php?module=myplugins");
 }
@@ -60,8 +67,31 @@ function myplugins_deactivate_commit()
 	if($plugininfo['author'] != "Jones")
 	    return;
 
+	$stats = $cache->read("myplugins_stats");
+	if($stats['enabled']) {
+		$url = "http://jonesboard.de/plugins-api.php?action=plugins&amp;do=deactivate&amp;code={$stats['code']}&amp;plugin=".urlencode($plugininfo['name'])."&amp;version=".urlencode($plugininfo['version']);
+
+		fetch_remote_file($url);
+	}
+
 	flash_message($message, 'success');
 	admin_redirect("index.php?module=myplugins");
+}
+
+function generate_url($info, $el = "") {
+	$string = "";
+	foreach($info as $key => $value)
+	{
+		if($el != "")
+		    $key = "[{$key}]";
+		if(is_array($value)) {
+			$string .= generate_url($value, "{$el}{$key}");
+		} else {
+			$string .= "&amp;".$el.$key."=".urlencode($value);
+		}
+	}
+
+	return $string;
 }
 
 global $mybb;
