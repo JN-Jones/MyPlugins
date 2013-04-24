@@ -92,12 +92,12 @@ $table->output($lang->inactive_plugin);
 $table = new Table;
 $table->construct_header($lang->plugin);
 $table->construct_header($lang->version, array("class" => "align_center"));
-//$table->construct_header($lang->controls, array("colspan" => 2, "class" => "align_center", "width" => 300));
+$table->construct_header($lang->download);
 
 if($got) {
 	if(sizeOf($download_plugins) < 1)
 	{
-		$table->construct_cell($lang->no_downloadable_plugins, array('colspan' => 4));
+		$table->construct_cell($lang->no_downloadable_plugins, array('colspan' => 3));
 		$table->construct_row();
 	}
 	else
@@ -117,12 +117,13 @@ if($got) {
 			$desc = $parser->parse_message($plugin['desc'], $parser_options);
 			$table->construct_cell("<strong>{$plugin['name']}</strong><br /><small>{$desc}</small>");
 			$table->construct_cell($plugin['version'], array("class" => "align_center"));
-	
+			$table->construct_cell("<a href=\"index.php?module=myplugins-download&plugin={$plugin['kennung']}\">{$lang->download}</a>");
+
 			$table->construct_row();			
 		}
 	}
 } else {
-	$table->construct_cell($lang->no_connection, array('colspan' => 4));
+	$table->construct_cell($lang->no_connection, array('colspan' => 3));
 	$table->construct_row();	
 }
 $table->output($lang->downloadable_plugin);
@@ -174,6 +175,7 @@ function build_plugin_list($plugin_list)
 		}
 		
 		$color = "black";
+		$upload_warning = "";
 		if($download_plugins) {
 			if(isset($plugininfo['myplugins_id']))
 			    $code = $plugininfo['myplugins_id'];
@@ -183,14 +185,16 @@ function build_plugin_list($plugin_list)
 			if(isset($download_plugins[$code])) {
 				if(version_compare($plugininfo['version'], $download_plugins[$code]['version'], ">="))
 				    $color = "green";
-				else
+				else {
 					$color = "red";
+					$upload_warning = " (<a href=\"index.php?module=myplugins-download&update=1&plugin={$code}\">{$lang->update}</a>)";
+				}
 				unset($download_plugins[$code]);
 			}
 		}
 
 		$table->construct_cell("<strong>{$plugininfo['name']}</strong><br /><small>{$plugininfo['description']}</small>");
-		$table->construct_cell("<span style=\"color: {$color};\">{$plugininfo['version']}</span>", array("class" => "align_center"));
+		$table->construct_cell("<span style=\"color: {$color};\">{$plugininfo['version']}{$upload_warning}</span>", array("class" => "align_center"));
 
 		// Plugin is not installed at all
 		if($installed == false)
@@ -207,8 +211,11 @@ function build_plugin_list($plugin_list)
 		// Plugin is activated and installed
 		else if($plugininfo['is_active'])
 		{
-			$table->construct_cell("<a href=\"index.php?module=config-plugins&amp;action=deactivate&amp;plugin={$plugininfo['codename']}&amp;my_post_key={$mybb->post_code}\">{$lang->deactivate}</a>", array("class" => "align_center", "width" => 150));
-			if($uninstall_button)
+			if($plugininfo['codename'] != "myplugins")
+				$table->construct_cell("<a href=\"index.php?module=config-plugins&amp;action=deactivate&amp;plugin={$plugininfo['codename']}&amp;my_post_key={$mybb->post_code}\">{$lang->deactivate}</a>", array("class" => "align_center", "width" => 150));
+			else
+				$table->construct_cell("&nbsp;", array("class" => "align_center", "width" => 150));
+		    if($uninstall_button)
 			{
 				$table->construct_cell("<a href=\"index.php?module=config-plugins&amp;action=deactivate&amp;uninstall=1&amp;plugin={$plugininfo['codename']}&amp;my_post_key={$mybb->post_code}\">{$lang->uninstall}</a>", array("class" => "align_center", "width" => 150));
 			}

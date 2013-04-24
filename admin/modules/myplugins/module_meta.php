@@ -29,6 +29,7 @@ function myplugins_action_handler($action)
 	
 	$actions = array(
 		'list' => array('active' => 'list', 'file' => 'list.php'),
+		'download' => array('active' => 'list', 'file' => 'download.php'),
 		'stats' => array('active' => 'stats', 'file' => 'stats.php'),
 		'verification' => array('active' => 'verification', 'file' => 'verification.php')
 	);

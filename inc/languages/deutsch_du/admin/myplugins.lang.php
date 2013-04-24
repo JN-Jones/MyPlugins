@@ -29,4 +29,7 @@ $l['myplugins_activate_desc'] = "&Uuml;bermittelt werden nur ServerInformationen
 $l['myplugins_code'] = "Statistik Code";
 $l['myplugins_code_desc'] = "Dieser zufallsgenerierte Code wird benutzt um die gesendeten Daten verarbeiten zu k&ouml;nnen.<br />
 Wenn du diesen Code auf JonesBoard in deinem <a href=\"http://jonesboard.de/usercp.php?action=myplugins\" target=\"_blank\">UserCP</a> eintr&auml;gst, kann dir noch besser Support geleistet werden.";
+
+$l['update'] = "Update";
+$l['download'] = "Herunterladen";
 ?>
