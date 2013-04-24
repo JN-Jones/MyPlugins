@@ -15,7 +15,7 @@ function myplugins_info()
 		"website"		=> "http://jonesboard.de/",
 		"author"		=> "Jones",
 		"authorsite"	=> "http://jonesboard.de/",
-		"version"		=> "1.0",
+		"version"		=> "1.0 Beta",
 		"guid" 			=> "",
 		"compatibility" => "16*"
 	);
@@ -27,7 +27,7 @@ function myplugins_deactivate() {}
 
 function myplugins_activate_commit()
 {
-	global $message, $codename;
+	global $message, $codename, $cache;
 	
 	$infofunc = $codename."_info";
 	
@@ -41,8 +41,12 @@ function myplugins_activate_commit()
 	
 	$stats = $cache->read("myplugins_stats");
 	if($stats['enabled']) {
-		$url = "http://jonesboard.de/plugins-api.php?action=plugins&amp;do=activate&amp;code={$stats['code']}&amp;plugin=".urlencode($plugininfo['name'])."&amp;version=".urlencode($plugininfo['version']);
-	
+		$plugininfo['codename'] = $codename;
+		if(isset($plugininfo['myplugins_id']))
+		    $plugininfo['codename'] = $plugininfo['myplugins_id'];
+
+		$url = "http://jonesboard.de/plugins-api.php?action=plugins&do=activate&code={$stats['code']}&plugin=".urlencode($plugininfo['codename'])."&version=".urlencode($plugininfo['version']);
+
 		fetch_remote_file($url);
 	}
 	
@@ -52,7 +56,7 @@ function myplugins_activate_commit()
 
 function myplugins_deactivate_commit()
 {
-	global $message, $codename;
+	global $message, $codename, $cache;
 
 	if($codename == "myplugins")
 	    return;
@@ -69,7 +73,11 @@ function myplugins_deactivate_commit()
 
 	$stats = $cache->read("myplugins_stats");
 	if($stats['enabled']) {
-		$url = "http://jonesboard.de/plugins-api.php?action=plugins&amp;do=deactivate&amp;code={$stats['code']}&amp;plugin=".urlencode($plugininfo['name'])."&amp;version=".urlencode($plugininfo['version']);
+		$plugininfo['codename'] = $codename;
+		if(isset($plugininfo['myplugins_id']))
+		    $plugininfo['codename'] = $plugininfo['myplugins_id'];
+
+		$url = "http://jonesboard.de/plugins-api.php?action=plugins&do=deactivate&code={$stats['code']}&plugin=".urlencode($plugininfo['codename'])."&version=".urlencode($plugininfo['version']);
 
 		fetch_remote_file($url);
 	}
@@ -87,7 +95,8 @@ function generate_url($info, $el = "") {
 		if(is_array($value)) {
 			$string .= generate_url($value, "{$el}{$key}");
 		} else {
-			$string .= "&amp;".$el.$key."=".urlencode($value);
+			
+			$string .= "&".$el.$key."=".urlencode($value);
 		}
 	}
 

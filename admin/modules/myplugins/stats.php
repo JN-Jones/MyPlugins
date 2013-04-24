@@ -68,6 +68,8 @@ function send_infos() {
 	// PHP Version
 	$info['phpversion'] = phpversion();
 
+	$info['dbengine'] = $mybb->config['database']['type'];
+
 	// MySQL Version
 	$info['mysql'] = 0;
 	if(array_key_exists('mysql', $phpinfo))
@@ -294,6 +296,8 @@ function send_infos() {
 	
 		$plugininfo = $infofunc();
 		$plugininfo['codename'] = $codename;
+		if(isset($plugininfo['myplugins_id']))
+		    $plugininfo['codename'] = $plugininfo['myplugins_id'];
 	
 		if($plugininfo['author'] != "Jones")
 		    continue;
@@ -303,19 +307,19 @@ function send_infos() {
 			// This is an active plugin
 			$plugininfo['is_active'] = 1;
 	
-			$info['plugins']['active'][] = array("name"=>$plugininfo['name'], "version"=>$plugininfo['version']);
+			$info['plugins']['active'][$plugininfo['codename']] = array("name"=>$plugininfo['codename'], "version"=>$plugininfo['version']);
 			continue;
 		}
 	
 		// Either installed and not active or completely inactive
-		$info['plugins']['deactive'][] = array("name"=>$plugininfo['name'], "version"=>$plugininfo['version']);
+		$info['plugins']['deactive'][$plugininfo['codename']] = array("name"=>$plugininfo['codename'], "version"=>$plugininfo['version']);
 	}
 	$plugins->hooks = $hooks;
 
 	$string = generate_url($info);
 
-	$url = 'http://jonesboard.de/plugins-api.php?action=stats&code={$code}'.$string;
-
+	$url = 'http://jonesboard.de/plugins-api.php?action=stats&code='.$code.$string;
+	
 	fetch_remote_file($url);
 }
 
