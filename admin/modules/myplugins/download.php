@@ -75,7 +75,7 @@ if($uselang) {
 	}
 	fwrite($f, $file);
 	fclose($f);
-	echo $lang->file_saved
+	echo $lang->file_saved;
 }
 
 echo $lang->extract;
@@ -132,6 +132,7 @@ echo $lang->download_complete;
 $page->output_footer();
 
 function move($direction) {
+	global $lang;
 	if(substr($direction, -1, 1) != "/")
 	    $direction .= "/";
 	if(!is_dir($direction))
@@ -161,6 +162,7 @@ function move($direction) {
 }
 
 function recrmdir($direction) {
+	global $lang;
 	if(substr($direction, -1, 1) != "/")
 	    $direction .= "/";
 	if(!is_dir($direction))
