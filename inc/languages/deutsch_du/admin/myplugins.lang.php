@@ -32,4 +32,25 @@ Wenn du diesen Code auf JonesBoard in deinem <a href=\"http://jonesboard.de/user
 
 $l['update'] = "Update";
 $l['download'] = "Herunterladen";
+
+//Download
+$l['get_package'] = "Bekomm zust&auml;ndiges Paket<br />";
+$l['invalid_file'] = "Keine g&uuml;ltige Datei gefunden";
+$l['download_package1'] = "Es wurde kein Paket in deiner Sprache gefunden, das englische Paket wird heruntergeladen<br />";
+$l['download_package2'] = "Englisches Paket + dein Sprachpaket werden runtergeladen<br />";
+$l['download_package3'] = "Dein Paket wird heruntergeladen<br />";
+$l['create_temp'] = "Erstelle tempor&auml;res Verzeichniss<br />";
+$l['create_temp_error'] = "Konnte das Verzeichnis \"myplugins-temp\" nicht erstellen, bitte erstelle es manuell";
+$l['start_download'] = "Starte Download des Plugins \"{1}\"<br />";
+$l['write_error'] = "Konnte die Tempor&auml;re Datei nicht &ouml;ffnen";
+$l['file_saved'] = "Datei erfolgreich lokal gespeichert<br />";
+$l['start_download_lang'] = "Starte Download der Sprachdatei<br />";
+$l['extract'] = "Entpacke .zips...<br />";
+$l['extract_error'] = "Konnte die .zip Datei(en) nicht entpacken";
+$l['move'] = "Verschiebe alle Dateien<br />";
+$l['move_error'] = "Konnte den Ordner nicht genau bestimmen";
+$l['delete_temp'] = "Versuche alle tempor&auml;re Dateien zu l&ouml;schen<br />";
+$l['download_complete'] = "<b>Download komplett</b>";
+$l['internal_error'] = "Interner Fehler";
+$l['move_to'] = "Verschiebe {1} -> {2}<br />"
 ?>
