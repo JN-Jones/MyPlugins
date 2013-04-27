@@ -29,4 +29,29 @@ $l['myplugins_activate_desc'] = "Just server information and information about m
 $l['myplugins_code'] = "Statistic Code";
 $l['myplugins_code_desc'] = "This randomly generated code is used to handle the data.<br />
 If you enter this Code in your <a href=\"http://jonesboard.de/usercp.php?action=myplugins\" target=\"_blank\">UserCP</a> at JonesBoard, your support will be better.";
+
+$l['update'] = "Update";
+$l['download'] = "Download";
+
+//Download
+$l['get_package'] = "Get needed package<br />";
+$l['invalid_file'] = "No matched file found";
+$l['download_package1'] = "We found no package in your language, the english one will be downloaded<br />";
+$l['download_package2'] = "The english package and your language package will be downloaded<br />";
+$l['download_package3'] = "Your package will be download<br />";
+$l['create_temp'] = "Create temporary directory<br />";
+$l['create_temp_error'] = "Couldn't create the directory \"myplugins-temp\", please create it manually";
+$l['start_download'] = "Start download of \"{1}\"<br />";
+$l['write_error'] = "Couldn't open the temporary file";
+$l['file_saved'] = "File successfully saved<br />";
+$l['start_download_lang'] = "Start download of the language file<br />";
+$l['extract'] = "Extract .zip's...<br />";
+$l['extract_error'] = "Couldn't extract the .zip File(s)";
+$l['move'] = "Move all files<br />";
+$l['move_error'] = "Couldn't determine the folder";
+$l['delete_temp'] = "Try to delete all temporary files<br />";
+$l['download_complete'] = "<b>Download completed</b>";
+$l['internal_error'] = "Internal error";
+$l['move_to'] = "Move {1} -> {2}<br />";
+$l['update_note'] = "<br />Please follow the update instructions";
 ?>

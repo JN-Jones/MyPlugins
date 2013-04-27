@@ -146,15 +146,23 @@ function move($direction) {
 				
 		if(is_file($direction.$new)) {
 			$old_dir = $direction.$new;
+			/*$offset = strpos($old_dir, "/", $offset);
 			$offset = strpos($old_dir, "/", $offset+1);
 			$offset = strpos($old_dir, "/", $offset+1);
-			$offset = strpos($old_dir, "/", $offset+1);
-			$start = strpos($old_dir, "/", $offset+1);
+			$start = strpos($old_dir, "/", $offset+1); */
+			$t = str_replace(MYBB_ROOT, "", $old_dir);
+			$t2 = strpos($t, "/");
+			$t3 = strpos($t, "/", $t2+1);
+			$t4 = strpos($t, "/", $t3+1);
+			$start = strlen(MYBB_ROOT)+$t4;
 			$relative = substr($old_dir, $start+1);
 			if(substr($relative, 0, 6) == "admin/")
 			    $relative = $mybb->config['admin_dir']."/".substr($relative, 6);
 
 			$new_dir = MYBB_ROOT.$relative;
+			$cdir = substr($new_dir, 0, strrpos($new_dir, "/"));
+			if(!is_dir($cdir))
+			    mkdir($cdir, 0777, true);
 			
 			rename($old_dir, $new_dir);
 			echo $lang->sprintf($lang->move_to, str_replace(MYBB_ROOT, "", $old_dir), str_replace(MYBB_ROOT, "", $new_dir));
