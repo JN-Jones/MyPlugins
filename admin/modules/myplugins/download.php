@@ -128,6 +128,8 @@ echo $lang->delete_temp;
 recrmdir(MYBB_ROOT."myplugins-temp/");
 
 echo $lang->download_complete;
+if(isset($mybb->input['update']) && $mybb->input['update'])
+    echo $lang->update_note;
 
 $page->output_footer();
 

@@ -52,5 +52,6 @@ $l['move_error'] = "Konnte den Ordner nicht genau bestimmen";
 $l['delete_temp'] = "Versuche alle tempor&auml;re Dateien zu l&ouml;schen<br />";
 $l['download_complete'] = "<b>Download komplett</b>";
 $l['internal_error'] = "Interner Fehler";
-$l['move_to'] = "Verschiebe {1} -> {2}<br />"
+$l['move_to'] = "Verschiebe {1} -> {2}<br />";
+$l['update_note'] = "<br />Bitte folge den Update Anweisungen";
 ?>
