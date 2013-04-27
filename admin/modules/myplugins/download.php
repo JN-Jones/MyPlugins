@@ -132,7 +132,7 @@ echo $lang->download_complete;
 $page->output_footer();
 
 function move($direction) {
-	global $lang;
+	global $lang, $mybb;
 	if(substr($direction, -1, 1) != "/")
 	    $direction .= "/";
 	if(!is_dir($direction))
@@ -149,11 +149,13 @@ function move($direction) {
 			$offset = strpos($old_dir, "/", $offset+1);
 			$start = strpos($old_dir, "/", $offset+1);
 			$relative = substr($old_dir, $start+1);
-			$new_dir = str_replace("myplugins-temp/", "", $old_dir);
+			if(substr($relative, 0, 6) == "admin/")
+			    $relative = $mybb->config['admin_dir']."/".substr($relative, 6);
+
 			$new_dir = MYBB_ROOT.$relative;
 			
 			rename($old_dir, $new_dir);
-			echo $lang->sprintf($lang->move_to, $old_dir, $new_dir);
+			echo $lang->sprintf($lang->move_to, str_replace(MYBB_ROOT, "", $old_dir), str_replace(MYBB_ROOT, "", $new_dir));
 		} elseif(is_dir($direction.$new)) {
 			move($direction.$new);
 		}
