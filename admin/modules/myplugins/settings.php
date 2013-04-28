@@ -9,8 +9,6 @@ $page->add_breadcrumb_item($lang->myplugins_settings, "index.php?module=myplugin
 
 $page->output_header($lang->myplugins_settings);
 
-$plug = $cache->read("plugins");
-$plug = $plug['active'];
 $plug = get_plugins_list();
 
 if($mybb->request_method == "post") {

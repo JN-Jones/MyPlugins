@@ -4,6 +4,7 @@ $l['myplugins'] = "MyPlugins";
 //Admin Menu
 $l['myplugins_overview'] = "Overview";
 $l['myplugins_settings'] = "Settings";
+$l['myplugins_template'] = "Template Changes";
 $l['myplugins_stats'] = "Anonymous Statistics";
 $l['myplugins_verification'] = "File Verification";
 
@@ -59,4 +60,9 @@ $l['update_note'] = "<br />Please follow the update instructions";
 //Settings
 $l['error_chmod_settings_file'] = "The settings file \"./inc/settings.php\" isn't writable. Please CHMOD to 777.<br />For more information on CHMODing, see the <a href=\"http://docs.mybb.com/HowTo_Chmod.html\" target=\"_blank\">MyBB Docs</a>.";
 $l['success_settings_updated'] = "The settings have been updated successfully.";
+
+//Templates
+$l['template'] = "Template";
+$l['search'] = "Searchstring";
+$l['replace'] = "Replacement";
 ?>
