@@ -12,8 +12,9 @@ function myplugins_meta()
 
 	$sub_menu = array();
 	$sub_menu['5'] = array("id" => "list", "title" => $lang->myplugins_overview, "link" => "index.php?module=myplugins");
-	$sub_menu['10'] = array("id" => "stats", "title" => $lang->myplugins_stats, "link" => "index.php?module=myplugins-stats");
-//	$sub_menu['15'] = array("id" => "verification", "title" => $lang->myplugins_verification, "link" => "index.php?module=myplugins-verification");
+	$sub_menu['10'] = array("id" => "settings", "title" => $lang->myplugins_settings, "link" => "index.php?module=myplugins-settings");
+	$sub_menu['15'] = array("id" => "stats", "title" => $lang->myplugins_stats, "link" => "index.php?module=myplugins-stats");
+//	$sub_menu['20'] = array("id" => "verification", "title" => $lang->myplugins_verification, "link" => "index.php?module=myplugins-verification");
 	
 	if(function_exists("myplugins_info"))
 		$page->add_menu_item($lang->myplugins, "myplugins", "index.php?module=myplugins", 45, $sub_menu);
@@ -30,6 +31,7 @@ function myplugins_action_handler($action)
 	$actions = array(
 		'list' => array('active' => 'list', 'file' => 'list.php'),
 		'download' => array('active' => 'list', 'file' => 'download.php'),
+		'settings' => array('active' => 'settings', 'file' => 'settings.php'),
 		'stats' => array('active' => 'stats', 'file' => 'stats.php'),
 		'verification' => array('active' => 'verification', 'file' => 'verification.php')
 	);

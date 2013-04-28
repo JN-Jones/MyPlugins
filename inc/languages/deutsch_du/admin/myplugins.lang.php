@@ -3,6 +3,7 @@ $l['myplugins'] = "MyPlugins";
 
 //Admin Menu
 $l['myplugins_overview'] = "Übersicht";
+$l['myplugins_settings'] = "Einstellungen";
 $l['myplugins_stats'] = "Anonyme Statistiken";
 $l['myplugins_verification'] = "Dateiüberprüfung";
 
@@ -54,4 +55,8 @@ $l['download_complete'] = "<b>Download komplett</b>";
 $l['internal_error'] = "Interner Fehler";
 $l['move_to'] = "Verschiebe {1} -> {2}<br />";
 $l['update_note'] = "<br />Bitte folge den Update Anweisungen";
+
+//Settings
+$l['error_chmod_settings_file'] = "Die Datei \"./inc/settings.php\" ist nicht beschreibbar. Bitte setze die CHMOD-Rechte auf 777.<br />Weitere Informationen findest du in der <a href=\"http://www.mybboard.de/doku/installationaktualisierung/installation.html\" target=\"_blank\">Doku</a>.";
+$l['success_settings_updated'] = "Die Einstellungen wurden erfolgreich aktualisiert.";
 ?>
