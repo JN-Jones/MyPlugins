@@ -65,4 +65,8 @@ $l['success_settings_updated'] = "The settings have been updated successfully.";
 $l['template'] = "Template";
 $l['search'] = "Searchstring";
 $l['replace'] = "Replacement";
+$l['added'] = "Added?";
+$l['template_missing'] = "Template doesn't exist";
+$l['changed'] = "Changed";
+$l['not_changed'] = "Not changed";
 ?>
