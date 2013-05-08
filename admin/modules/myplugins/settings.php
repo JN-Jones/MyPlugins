@@ -38,6 +38,8 @@ foreach($plug as $plugin_file) {
 	$plugin = str_replace(".php", "", $plugin_file);
 
 	$info = $plugin."_info";
+	if(!function_exists($info))
+	    continue;
 	$info = $info();
 	
 	if($info['author'] != "Jones")

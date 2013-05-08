@@ -23,6 +23,8 @@ foreach($plug as $plugin) {
 	require_once MYBB_ROOT."inc/plugins/{$plugin}.php";
 
 	$info = $plugin."_info";
+	if(!function_exists($info))
+	    continue;
 	$info = $info();
 	
 	if($info['author'] != "Jones")
