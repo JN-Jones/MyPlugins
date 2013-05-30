@@ -15,8 +15,8 @@ function myplugins_info()
 		"website"		=> "http://jonesboard.de/",
 		"author"		=> "Jones",
 		"authorsite"	=> "http://jonesboard.de/",
-		"version"		=> "1.0 Beta",
-		"guid" 			=> "",
+		"version"		=> "1.0",
+		"guid" 			=> "dfff9c030f3b81df0533452117565fb8",
 		"compatibility" => "16*"
 	);
 }
