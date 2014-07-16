@@ -15,9 +15,9 @@ function myplugins_info()
 		"website"		=> "http://jonesboard.de/",
 		"author"		=> "Jones",
 		"authorsite"	=> "http://jonesboard.de/",
-		"version"		=> "1.0.1",
+		"version"		=> "1.0.2",
 		"guid" 			=> "dfff9c030f3b81df0533452117565fb8",
-		"compatibility" => "16*"
+		"compatibility" => "*"
 	);
 }
 
@@ -28,28 +28,28 @@ function myplugins_deactivate() {}
 function myplugins_activate_commit()
 {
 	global $message, $codename, $cache;
-	
+
 	$infofunc = $codename."_info";
-	
+
 	if(!function_exists($infofunc))
 		return;
-	
+
 	$plugininfo = $infofunc();
-	
+
 	if($plugininfo['author'] != "Jones")
-	    return;
-	
+		return;
+
 	$stats = $cache->read("myplugins_stats");
 	if($stats['enabled']) {
 		$plugininfo['codename'] = $codename;
 		if(isset($plugininfo['myplugins_id']))
-		    $plugininfo['codename'] = $plugininfo['myplugins_id'];
+			$plugininfo['codename'] = $plugininfo['myplugins_id'];
 
 		$url = "http://jonesboard.de/plugins-api.php?action=plugins&do=activate&code={$stats['code']}&plugin=".urlencode($plugininfo['codename'])."&version=".urlencode($plugininfo['version']);
 
 		fetch_remote_file($url);
 	}
-	
+
 	flash_message($message, 'success');
 	admin_redirect("index.php?module=myplugins");
 }
@@ -59,7 +59,7 @@ function myplugins_deactivate_commit()
 	global $message, $codename, $cache;
 
 	if($codename == "myplugins")
-	    return;
+		return;
 
 	$infofunc = $codename."_info";
 
@@ -69,13 +69,13 @@ function myplugins_deactivate_commit()
 	$plugininfo = $infofunc();
 
 	if($plugininfo['author'] != "Jones")
-	    return;
+		return;
 
 	$stats = $cache->read("myplugins_stats");
 	if($stats['enabled']) {
 		$plugininfo['codename'] = $codename;
 		if(isset($plugininfo['myplugins_id']))
-		    $plugininfo['codename'] = $plugininfo['myplugins_id'];
+			$plugininfo['codename'] = $plugininfo['myplugins_id'];
 
 		$url = "http://jonesboard.de/plugins-api.php?action=plugins&do=deactivate&code={$stats['code']}&plugin=".urlencode($plugininfo['codename'])."&version=".urlencode($plugininfo['version']);
 
@@ -91,11 +91,10 @@ function generate_url($info, $el = "") {
 	foreach($info as $key => $value)
 	{
 		if($el != "")
-		    $key = "[{$key}]";
+			$key = "[{$key}]";
 		if(is_array($value)) {
 			$string .= generate_url($value, "{$el}{$key}");
 		} else {
-			
 			$string .= "&".$el.$key."=".urlencode($value);
 		}
 	}
@@ -122,7 +121,7 @@ if(!function_exists("get_plugins_list") && $mybb->input['module'] != "config-plu
 			@sort($plugins_list);
 		}
 		@closedir($dir);
-	
+
 		return $plugins_list;
 	}
 }
